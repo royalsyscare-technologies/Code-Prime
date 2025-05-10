@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RoyalSysCare - Python Editor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="editor">
+    <h3>Code Prime By RoyalSysCare Technologies</h3>
+    <div class="tab-bar" id="tab-bar">
+        <div class="tab active" onclick="switchTab('Main.py')" id="tab-Main.py"><span>Main.py</span><span class="close" onclick="closeTab(event, 'Main.py')">✖</span></div>
+        <div class="tab" onclick="addNewTab()">➕</div>
+    </div>
+    <div class="editor-container">
+        <div class="line-numbers" id="line-numbers">1</div>
+        <textarea id="code" placeholder="Write your Python code here...", contenteditable="true",  class="editor-textarea"></textarea>
+    </div>
+    <div class="button-group">
+        <button onclick="runCode()">Run ▶</button>
+        <button onclick="downloadCurrentFile()">💾 Save .py</button>
+        <input type="file" id="upload-file" accept=".py" style="display: none;" onchange="uploadPythonFile(event)">
+        <button onclick="document.getElementById('upload-file').click()">📂 Load .py</button>
+    </div>
+</div>
+<div class="terminal" id="terminal">
+    <h3>Terminal</h3>
+    <button onclick="clearTerminal()" class="clear-btn">Clear</button>
+    <div id="output"></div>
+    <input type="text" id="input-box" placeholder="Type input and press Enter">
+</div>
+<!-- Settings Icon -->
+<div class="settings-icon" onclick="openSettings()">⚙️</div>
+<!-- Settings Modal -->
+<div id="settingsModal" class="modal-overlay">
+    <div class="modal-content">
+        <h2>Editor Settings</h2>
+        <label>
+            Theme:
+            <select id="themeSelector" onchange="changeTheme(this.value)">
+                <option value="dark" selected>Dark</option>
+                <option value="light">Light</option>
+            </select>
+        </label>
+        <label>
+            Font Size:
+            <select id="fontSizeSelector" onchange="changeFontSize(this.value)">
+                <option value="14px">14px</option>
+                <option value="16px" selected>16px</option>
+                <option value="18px">18px</option>
+                <option value="20px">20px</option>
+            </select>
+        </label>
+        <label>
+            Font Family:
+            <select id="fontFamilySelector" onchange="changeFontFamily(this.value)">
+                <option value="monospace" selected>Monospace</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Fira Code">Fira Code</option>
+                <option value="Consolas">Consolas</option>
+            </select>
+        </label>
+        <div class="modal-buttons">
+            <button onclick="closeSettings()">Close</button>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
